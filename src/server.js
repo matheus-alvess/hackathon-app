@@ -1,5 +1,5 @@
 import app from './app';
 
-app.listen(3333, () => {
+app.listen(process.env.PORT, () => {
   console.log(`server listen at: 3333`);
 });
