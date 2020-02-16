@@ -7,6 +7,8 @@ import { pt } from 'date-fns/locale';
 import routes from './routes';
 import './database';
 
+const cors = require('cors');
+
 class App {
   constructor() {
     this.server = express();
@@ -17,6 +19,7 @@ class App {
   }
 
   middlewares() {
+    this.server.use(cors());
     this.server.use(express.json());
     this.server.use(this.requestLogger);
   }
