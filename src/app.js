@@ -4,10 +4,9 @@ import 'express-async-errors';
 import Youch from 'youch';
 import { format } from 'date-fns';
 import { pt } from 'date-fns/locale';
+import cors from 'cors';
 import routes from './routes';
 import './database';
-
-const cors = require('cors');
 
 class App {
   constructor() {
