@@ -5,6 +5,7 @@ import DisplayController from './app/controllers/DisplayController';
 import authMiddleware from './app/middlewares/auth';
 import accessControl from './app/middlewares/accessControl';
 import CompanyController from './app/controllers/CompanyController';
+import RatingController from './app/controllers/RatingController';
 
 const routes = new Router();
 
@@ -20,6 +21,7 @@ routes.post('/sessions', SessionController.store);
 routes.use(authMiddleware);
 
 /* workers routes */
+routes.post('/create/rating', RatingController.store); // desenvolver
 
 /* owners routes */
 routes.use(accessControl);
