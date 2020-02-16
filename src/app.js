@@ -2,8 +2,9 @@ import 'dotenv/config';
 import express from 'express';
 import 'express-async-errors';
 import Youch from 'youch';
+import { format } from 'date-fns';
+import { pt } from 'date-fns/locale';
 import routes from './routes';
-
 import './database';
 
 class App {
@@ -21,7 +22,11 @@ class App {
   }
 
   requestLogger(req, res, next) {
-    console.log(`${new Date().toLocaleString()} - ${req.method} - ${req.url}`);
+    console.log(
+      `${format(new Date(), 'dd/MM/yyyy - HH:mm:ssxxx', { locale: pt })} - ${
+        req.method
+      } - ${req.url}`
+    );
     next();
   }
 
