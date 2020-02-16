@@ -1,8 +1,10 @@
 import { Router } from 'express';
 import SessionController from './app/controllers/SessionController';
 import UserController from './app/controllers/UserController';
+import DisplayController from './app/controllers/DisplayController';
 import authMiddleware from './app/middlewares/auth';
 import accessControl from './app/middlewares/accessControl';
+import CompanyController from './app/controllers/CompanyController';
 
 const routes = new Router();
 
@@ -21,5 +23,8 @@ routes.use(authMiddleware);
 
 /* owners routes */
 routes.use(accessControl);
+
+routes.post('/owners/create/company', CompanyController.store);
+routes.get('/owners/display/all', DisplayController.index);
 
 export default routes;

@@ -1,5 +1,7 @@
 import * as Yup from 'yup';
 import User from '../models/User';
+import Worker from '../models/Worker';
+import Owner from '../models/Owner';
 
 class UserController {
   async store(req, res) {
@@ -29,6 +31,12 @@ class UserController {
     }
 
     const { id, name, email, is_owner } = await User.create(req.body);
+
+    if (is_owner) {
+      await Owner.create({ user_id: id });
+    } else {
+      await Worker.create({ user_id: id });
+    }
 
     return res.json({
       id,

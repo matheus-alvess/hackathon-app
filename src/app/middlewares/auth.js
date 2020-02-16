@@ -16,10 +16,7 @@ export default async (req, res, next) => {
       authConfig.secret
     );
 
-    req.user = {
-      id,
-      is_owner,
-    };
+    req.user = { id, is_owner };
 
     return next();
   } catch (e) {

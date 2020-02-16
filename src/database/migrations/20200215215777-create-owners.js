@@ -7,13 +7,6 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      company_id: {
-        type: Sequelize.INTEGER,
-        references: { model: 'companies', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-        allowNull: true,
-      },
       user_id: {
         type: Sequelize.INTEGER,
         references: { model: 'users', key: 'id' },
