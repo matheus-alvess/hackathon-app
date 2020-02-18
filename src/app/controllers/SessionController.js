@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken';
 import * as Yup from 'yup';
 import authConfig from '../../config/auth';
 import User from '../models/User';
+import Worker from '../models/Worker';
+import Owner from '../models/Owner';
 
 class SessionController {
   async store(req, res) {
@@ -29,6 +31,29 @@ class SessionController {
     }
 
     const { id, name, is_owner } = user;
+
+    const baseToken = { id, name, email, is_owner };
+    let worker = null;
+    let owner = null;
+
+    if (is_owner) {
+      owner = await Owner.findOne({
+        where: {
+          user_id: id,
+        },
+        attributes: ['id'],
+      });
+      baseToken.ownerId = owner.id;
+    } else {
+      worker = await Worker.findOne({
+        where: {
+          user_id: id,
+        },
+        attributes: ['id'],
+      });
+      baseToken.workerId = worker.id;
+    }
+
     return res.json({
       user: {
         id,
@@ -36,7 +61,7 @@ class SessionController {
         email,
         is_owner,
       },
-      token: jwt.sign({ id, name, email, is_owner }, authConfig.secret, {
+      token: jwt.sign(baseToken, authConfig.secret, {
         expiresIn: authConfig.expiresIn,
       }),
     });

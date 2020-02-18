@@ -6,6 +6,7 @@ import authMiddleware from './app/middlewares/auth';
 import accessControl from './app/middlewares/accessControl';
 import CompanyController from './app/controllers/CompanyController';
 import RatingController from './app/controllers/RatingController';
+import GoalController from './app/controllers/GoalController';
 
 const routes = new Router();
 
@@ -26,6 +27,8 @@ routes.post('/create/rating', RatingController.store); // desenvolver
 /* owners routes */
 routes.use(accessControl);
 
+routes.post('/owners/goal', GoalController.store);
+routes.get('/owners/goal', GoalController.index);
 routes.post('/owners/create/company', CompanyController.store);
 routes.get('/owners/display/all', DisplayController.index);
 
