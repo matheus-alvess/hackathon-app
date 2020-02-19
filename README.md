@@ -1,12 +1,23 @@
-Sequelize commands:
+# HACKATHON
 
-Create Migration running:
-`yarn sequelize migration:create --name create-files`
+Api developed for the mega hackathon.
 
-Run Migrate:
+# RUN APP:
 
-`yarn sequelize db:migrate`
+`yarn install && yarn build && yarn start`
 
-DOCKER RUN APP COMMAND:
+# DOCKER CONTAINER UP:
+
+Up all containers.
 
 `docker-compose up -d`
+
+# SEQUELIZE COMMANDS:
+
+- Create Migration.
+
+`yarn sequelize migration:create --name create-files`
+
+- Run Migrate.
+
+`yarn sequelize db:migrate`
