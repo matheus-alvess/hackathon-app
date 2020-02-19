@@ -9,7 +9,8 @@ class User extends Model {
         email: Sequelize.STRING,
         password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,
-        provider: Sequelize.STRING,
+        is_owner: Sequelize.BOOLEAN,
+        created_at: Sequelize.DATE,
       },
       {
         sequelize,

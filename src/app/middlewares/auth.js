@@ -11,9 +11,12 @@ export default async (req, res, next) => {
 
   const [, token] = authHeader.split(' ');
   try {
-    const decoded = await promisify(jwt.verify)(token, authConfig.secret);
+    const { id, is_owner, userId, ownerId } = await promisify(jwt.verify)(
+      token,
+      authConfig.secret
+    );
 
-    req.userId = decoded.id;
+    req.user = { id, is_owner, userId, ownerId };
 
     return next();
   } catch (e) {
